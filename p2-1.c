@@ -11,6 +11,8 @@ int i;
 
 void main(void)
 {
+    printf("[----- 서범교 2021039042 -----]\n\n");
+    
     for (i = 0; i < MAX_SIZE; i++)
         input[i] = i;
 

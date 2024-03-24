@@ -6,6 +6,8 @@ int main()
 {
     int one[] = {0, 1, 2, 3, 4};
 
+    printf("[----- 서범교 2021039042 -----]\n\n");
+
     printf("one = %p\n", one);
     printf("&one = %p\n", &one);
     printf("&one[0] = %p\n", &one[0]);
