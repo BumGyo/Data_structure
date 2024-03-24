@@ -11,8 +11,8 @@ int i;
 
 void main(void)
 {
-    printf("[----- ì„œë²”êµ 2021039042 -----]\n\n");
-    
+    printf("[----- ¼­¹ü±³ 2021039042 -----]\n\n");
+
     for (i = 0; i < MAX_SIZE; i++)
         input[i] = i;
 
@@ -20,60 +20,76 @@ void main(void)
     printf("--------------------------------------\n");
     printf(" sum1(input, MAX_SIZE) \n");
     printf("--------------------------------------\n");
-    printf("input \t= %p\n", input);
 
+    // input ¹è¿­ÀÇ ÁÖ¼Ò °ª Ãâ·Â
+    printf("input \t= %p\n", input);
+    // sum1(input, Max_SIZE) ÇÔ¼ö¸¦ È£ÃâÇÏ¿© ¸®ÅÏ°ªÀ» answer¿¡ ´ëÀÔ
     answer = sum1(input, MAX_SIZE);
+    // ÇÔ¼ö ¸®ÅÏ°ªÀÎ answer Ãâ·Â
     printf("The sum is: %f\n\n", answer);
 
     printf("--------------------------------------\n");
     printf(" sum2(input, MAX_SIZE) \n");
     printf("--------------------------------------\n");
-    printf("input \t= %p\n", input);
 
+    // input ¹è¿­ÀÇ ÁÖ¼Ò °ª Ãâ·Â
+    printf("input \t= %p\n", input);
+    // sum2(input, Max_SIZE) ÇÔ¼ö¸¦ È£ÃâÇÏ¿© ¸®ÅÏ°ªÀ» answer¿¡ ´ëÀÔ
     answer = sum2(input, MAX_SIZE);
+    // ÇÔ¼ö ¸®ÅÏ°ªÀÎ answer Ãâ·Â
     printf("The sum is: %f\n\n", answer);
 
     printf("--------------------------------------\n");
     printf(" sum3(MAX_SIZE, input) \n");
     printf("--------------------------------------\n");
-    printf("input \t= %p\n", input);
 
+    // input ¹è¿­ÀÇ ÁÖ¼Ò °ª Ãâ·Â
+    printf("input \t= %p\n", input);
+    // ±âÁ¸°ú ÀÎÀÚÀÇ ¼ø¼­¸¦ ´Ù¸£°Ô sum3(Max_SIZE, input) ÇÔ¼ö¸¦ È£ÃâÇÏ¿© ¸®ÅÏ°ªÀ» answer¿¡ ´ëÀÔ
     answer = sum3(MAX_SIZE, input);
+    // ÇÔ¼ö ¸®ÅÏ°ªÀÎ answer Ãâ·Â
     printf("The sum is: %f\n\n", answer);
 }
 
 float sum1(float list[], int n)
 {
+    // call by reference·Î inputÀÇ ÁÖ¼Ò¸¦ list°¡ ¹Ş¾Æ input ¹è¿­À» list¸¦ ÅëÇØ Á¢±ÙÇÔ
     printf("list \t= %p\n", list);
+    // listÀÇ ÁÖ¼Ò°ªÀÌ Ãâ·ÂµÊ
     printf("&list \t= %p\n\n", &list);
 
     int i;
     float tempsum = 0;
     for (i = 0; i < n; i++)
-        tempsum += list[i];
+        tempsum += list[i]; // list[]·Î ¸Å°³º¯¼ö¸¦ ¹Ş¾ÒÀ¸¹Ç·Î ´ÙÀ½°ú °°ÀÌ Á¢±Ù
     return tempsum;
 }
+
 float sum2(float *list, int n)
 {
+    // call by reference·Î inputÀÇ ÁÖ¼Ò¸¦ list°¡ ¹Ş¾Æ input ¹è¿­À» list¸¦ ÅëÇØ Á¢±ÙÇÔ
     printf("list \t= %p\n", list);
+    // listÀÇ ÁÖ¼Ò°ªÀÌ Ãâ·ÂµÊ
     printf("&list \t= %p\n\n", &list);
 
     int i;
     float tempsum = 0;
     for (i = 0; i < n; i++)
-        tempsum += *(list + i);
+        tempsum += *(list + i); // *list·Î ¸Å°³º¯¼ö¸¦ ¹Ş¾ÒÀ¸¹Ç·Î ´ÙÀ½°ú °°ÀÌ Á¢±Ù
     return tempsum;
 }
 
 /* stack variable reuse test */
 float sum3(int n, float *list)
 {
+    // call by reference·Î inputÀÇ ÁÖ¼Ò¸¦ list°¡ ¹Ş¾Æ input ¹è¿­À» list¸¦ ÅëÇØ Á¢±ÙÇÔ
     printf("list \t= %p\n", list);
+    // ±âÁ¸ÀÇ listÀÇ ÁÖ¼Ò°ªÀÇ ´ÙÀ½Ä­ÀÎ +4byteÀÇ ÁÖ¼Ò°ªÀÌ Ãâ·ÂµÊ
     printf("&list \t= %p\n\n", &list);
 
     int i;
     float tempsum = 0;
     for (i = 0; i < n; i++)
-        tempsum += *(list + i);
+        tempsum += *(list + i); // *list·Î ¸Å°³º¯¼ö¸¦ ¹Ş¾ÒÀ¸¹Ç·Î ´ÙÀ½°ú °°ÀÌ Á¢±Ù
     return tempsum;
 }
