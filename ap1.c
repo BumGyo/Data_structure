@@ -7,10 +7,13 @@ void main()
     int *plist[5] = {
         NULL,
     };
+
     plist[0] = (int *)malloc(sizeof(int));
     list[0] = 1;
     list[1] = 100;
     *plist[0] = 200;
+
+    printf("[----- 서범교 2021039042 -----]\n\n");
 
     printf("list[0] = %d\n", list[0]);
     printf("&list[0] = %p\n", &list[0]);
