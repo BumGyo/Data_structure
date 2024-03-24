@@ -46,7 +46,7 @@ void main()
     printf("plist = %p\n", plist);
     // 배열의 0번째 인덱스가 가리키는 값(동적 메모리 블록의 주소)를 출력한다.
     printf("plist[0] = %p\n", plist[0]);
-    // 4문장 모두 동적메모리로 할당되고 아무값도 들어가지 않아 null값이 출력된다.
+    // 4문장 모두 아무값도 들어가지 않아 null값이 출력된다.
     printf("plist[1] = %p\n", plist[1]);
     printf("plist[2] = %p\n", plist[2]);
     printf("plist[3] = %p\n", plist[3]);
