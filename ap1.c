@@ -7,7 +7,6 @@ void main()
     int *plist[5] = {
         NULL,
     };
-
     // Heap 영역(동적 메모리)에 할당되는 배열이다.
     plist[0] = (int *)malloc(sizeof(int));
     list[0] = 1;
@@ -15,6 +14,7 @@ void main()
     *plist[0] = 200;
 
     printf("[----- 서범교 2021039042 -----]\n\n");
+    
     // list[0]의 값인 1이 출력된다.
     printf("list[0] = %d\n", list[0]);
     // list[0]의 주소값이 출력된다.
