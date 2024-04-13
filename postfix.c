@@ -271,7 +271,7 @@ void evaluation() {
 			// char형의 마지막은 NULL이므로 - '0'을 해주어야함
             evalPush(symbol - '0'); 
         } else {
-			// 연산자라면 스택에서 두개의 피연산자를 pop하여 연산 후 evalStack에 추가
+			// 연산자라면 스택에서 두개의 피연산자를 pop하여 연산 후 evalResult에 추가
             op2 = evalPop();
             op1 = evalPop();
 
