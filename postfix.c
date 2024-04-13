@@ -96,24 +96,23 @@ int main() {
 }
 
 void postfixpush(char x) {
-	// 스택이 가득 찼는지 확인
+	// postfixStackTop이 가득 찼는지 확인
     if(postfixStackTop == MAX_STACK_SIZE - 1) {
 		// 가득 찼다면 오버플로우 메시지 출력 후 함수 종료
         printf("Stack overflow\n");
         return;
     }
-	// 스택이 가득 차지 않았다면 스택 포인터를 증가시키고 x를 스택 맨위에 추가
+	// 가득 차지 않았다면 스택 포인터를 증가시키고 x를 스택 맨위에 추가
     postfixStack[++postfixStackTop] = x;
 }
 
 char postfixPop() {
 	char x;
-	// 스택이 비어있는지 확인
+	// postfixStackTop이 비어있는지 확인
 	if (postfixStackTop == -1)
 		return '\0'; // 비어있다면 NULL 반환
-	else
-	{
-		// 스택이 비어 있지 않으면 스택 맨 위 값을 제거 후 그 요소를 x에 저장 
+	else {
+		// 비어 있지 않으면 스택 맨 위 값을 제거 후 그 요소를 x에 저장 
 		x = postfixStack[postfixStackTop--];
 	}
 	// 저장한 x 리턴
@@ -121,12 +120,12 @@ char postfixPop() {
 }
 
 void evalPush(int x) {
-	// 스택의 맨 위에 x를 추가
+	// evalStack의 맨 위에 x를 추가
 	evalStack[++evalStackTop] = x;
 }
 
 int evalPop() {
-	// 스택이 비어있는지 확인
+	// evalStackTop이 비어있는지 확인
 	if (evalStackTop == -1)
 		return -1;
 	else
@@ -195,24 +194,24 @@ void toPostfix() {
 		// getToken() 함수를 이용하여 x의 종류를 확인
 		switch(getToken(x)) {
             case operand:
-				// 피연산자라면 바로 postfixExp에 추가
+				// 피연산자라면 charCat 함수를 호출하여 postfixExp에 추가
                 charCat(exp);
                 break;
             case rparen:
-				// 오른쪽 괄호라면 왼쪽 괄호가 나올때까지 pop하고 postfixExp에 추가
+				// 오른쪽 괄호라면 왼쪽 괄호가 나올때까지 pop하고 charCat 함수를 호출
                 while (getToken(postfixStack[postfixStackTop]) != lparen) {
                     char c[2] = {postfixPop(), '\0'};
                     charCat(c);
                 }
-				// 왼쪽 괄호 제거
+				// postfixPop 함수를 호출하여 왼쪽 괄호 제거
                 postfixPop();
                 break;
             case lparen:
-				// 왼쪽 괄호라면 스택에 추가
+				// 왼쪽 괄호라면 postfixpush 함수 호출하여 스택 포인터 증가
                 postfixpush(x);
                 break;
             default:
-				// 연산자라면 우선순위 비교 후 스택에 추가
+				// 연산자라면 우선순위 비교 후 charCat 함수를 호출
                 while (postfixStackTop != -1 && getPriority(postfixStack[postfixStackTop]) >= getPriority(x)) {
                     char c[2] = {postfixPop(), '\0'};
                     charCat(c);
@@ -267,7 +266,7 @@ void evaluation() {
 
 		// getToken() 함수를 이용하여 symbol의 종류를 확인
         if (getToken(symbol) == operand) {
-			// 피연산자라면 스택에 추가
+			// 피연산자라면 evalStack의 맨 위에 x를 추가
 			// char형의 마지막은 NULL이므로 - '0'을 해주어야함
             evalPush(symbol - '0'); 
         } else {
