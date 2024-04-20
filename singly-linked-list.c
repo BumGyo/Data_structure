@@ -235,7 +235,7 @@ int deleteFirst(headNode* h) {
 	if(h->first == NULL) return -1;
 	// 첫 번째 노드를 임시 변수에 저장
 	listNode* temp = h->first;
-	// 첫 번째 노드를 두번째 노드로 변경
+	// temp의 link를 첫 번째 노드로 설정
 	h->first = temp->link;
 	// 첫 번째 노드 메모리 해제
 	free(temp);
@@ -298,12 +298,15 @@ int deleteLast(headNode* h) {
  * 리스트의 링크를 역순으로 재 배치
  */
 int invertList(headNode* h) {
+	// 리스트가 비어있거나 노드가 하나만 있는 경우 -1 반환하여 오류 처리
 	if (h->first == NULL || h->first->link == NULL) return -1;
 
+	// 이전 노드, 현재 노드, 다음 노드를 가리킬 포인터 생성
     listNode* prev = NULL;
     listNode* current = h->first;
     listNode* next = NULL;
 
+	// 현재 노드가 NULL이 될 때까지 반복
     while (current != NULL) {
         next = current->link;
         current->link = prev;
@@ -311,6 +314,7 @@ int invertList(headNode* h) {
         current = next;
     }
 
+	// 헤드 노드의 링크를 이전 노드로 설정
     h->first = prev;
 	return 0;
 }
