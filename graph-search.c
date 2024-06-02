@@ -107,8 +107,7 @@ int main() {
             printGraph(graph);
             break;
         case 'q': case 'Q':
-            printf("Quitting program.\n");
-            return 0;
+            break;
         default:
             printf("Invalid command.\n");
         }
@@ -261,39 +260,58 @@ void DFS(Graph* graph, int vertex) {
     }
 }
 
+// 너비 우선 탐색을 하는 BFS(Breadth-First Search) 함수 정의
 void BFS(Graph* graph, int startVertex) {
+    // 만약 graph가 비어있으면
     if (graph == NULL) {
         printf("Graph is empty.\n"); 
         return;
     }
 
+    // 큐를 나타내는 queue 배열
     Node* queue[MAX_VERTICES]; 
+    // front와 rear를 나타내는 변수
     int front = 0; 
     int rear = 0; 
 
-    graph->visited[startVertex] = 1; 
+    // startVertex 방문
+    graph->visited[startVertex] = 1;
+    // startVertex를 queue에 추가 
     queue[rear++] = graph->adjList[startVertex]; 
 
+    // front가 rear보다 작을 때까지 반복
     while (front < rear) {
+        // queue의 front에 있는 vertex
         Node* current = queue[front++];
+        // current의 vertex 출력
         printf("%d ", current->vertex); 
 
+        // current의 인접 리스트
         Node* temp = graph->adjList[current->vertex];
 
+        // temp가 NULL이 아닐 때까지 반복
         while (temp != NULL) {
+            // 인접 vertex
             int adjVertex = temp->vertex;
 
+            // 만약 방문하지 않은 vertex라면
             if (graph->visited[adjVertex] == 0) {
-                graph->visited[adjVertex] = 1; 
+                // 인접 vertex 방문을 표시
+                graph->visited[adjVertex] = 1;
+                // 인접 vertex를 queue에 추가 
                 queue[rear++] = graph->adjList[adjVertex]; 
             }
+            // temp를 다음 노드로 이동
             temp = temp->next; 
         }
     }
 }
 
+// 방문 여부를 초기화하는 clearVisited 함수 정의
 void clearVisited(Graph* graph) {
+    // 모든 vertex에 대해 방문 여부 초기화
     for (int i = 0; i < MAX_VERTICES; i++) {
+        // 방문하지 않은 vertex로 초기화
         graph->visited[i] = 0;
     }
 }
